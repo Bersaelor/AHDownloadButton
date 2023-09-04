@@ -52,6 +52,12 @@ public final class AHDownloadButton: UIView {
             startDownloadButtonTitleWidth = 0
         }
     }
+
+    public var startDownloadButtonImage: UIImage? = nil {
+        didSet {
+            startDownloadButton.setImage(startDownloadButtonImage, for: .normal)
+        }
+    }
     
     public var startDownloadButtonTitleFont: UIFont = .boldSystemFont(ofSize: 15) {
         didSet {
@@ -163,6 +169,12 @@ public final class AHDownloadButton: UIView {
             downloadedButton.titleLabel?.font = downloadedButtonTitleFont
         }
     }
+
+    public var downloadedButtonTitleImage: UIImage? = nil {
+        didSet {
+            downloadedButton.setImage(downloadedButtonTitleImage, for: .normal)
+        }
+    }
     
     public var downloadedButtonTitleSidePadding: CGFloat = 12
     
@@ -226,7 +238,7 @@ public final class AHDownloadButton: UIView {
     
     let startDownloadButton: HighlightableRoundedButton = {
         let button = HighlightableRoundedButton()
-        button.addTarget(self, action: #selector(currentButtonTapped), for: .touchUpInside)
+        button.addTarget(AHDownloadButton.self, action: #selector(currentButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -238,13 +250,13 @@ public final class AHDownloadButton: UIView {
     
     let downloadingButton: ProgressButton = {
         let button = ProgressButton()
-        button.addTarget(self, action: #selector(currentButtonTapped), for: .touchUpInside)
+        button.addTarget(AHDownloadButton.self, action: #selector(currentButtonTapped), for: .touchUpInside)
         return button
     }()
     
     let downloadedButton: HighlightableRoundedButton = {
         let button = HighlightableRoundedButton()
-        button.addTarget(self, action: #selector(currentButtonTapped), for: .touchUpInside)
+        button.addTarget(AHDownloadButton.self, action: #selector(currentButtonTapped), for: .touchUpInside)
         return button
     }()
 
